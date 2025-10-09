@@ -1,8 +1,9 @@
+// src/componentes/Login/Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import api from "../../services/Api"; // tu instancia de axios
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import api from "../../services/Api"; // nuestra instancia de Axios configurada
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -22,17 +23,16 @@ const Login = () => {
 
     setLoading(true);
     try {
+      // Request al backend usando api.js
       const res = await api.post("/api/auth/login", { username, password });
 
-      // Guardar token en localStorage
+      // Guardar token y datos del usuario
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("username", username);
 
       alert("Login exitoso!");
-
-      // Redirigir a dashboard u otra página
-      navigate("/dashboard");
+      navigate("/dashboard"); // Redirigir al dashboard
 
     } catch (err) {
       console.error(err);
@@ -43,8 +43,8 @@ const Login = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formGroupEmail">
+    <Form onSubmit={handleSubmit} className="mx-auto" style={{ maxWidth: "400px", marginTop: "50px" }}>
+      <Form.Group className="mb-3" controlId="formUsername">
         <Form.Label>Usuario</Form.Label>
         <Form.Control
           type="text"
@@ -54,7 +54,7 @@ const Login = () => {
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGroupPassword">
+      <Form.Group className="mb-3" controlId="formPassword">
         <Form.Label>Contraseña</Form.Label>
         <Form.Control
           type="password"
@@ -64,7 +64,7 @@ const Login = () => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit" disabled={loading}>
+      <Button variant="primary" type="submit" disabled={loading} className="w-100">
         {loading ? "Ingresando..." : "Ingresar"}
       </Button>
     </Form>

@@ -1,17 +1,8 @@
-import Accordion from "react-bootstrap/Accordion";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
-import { useState } from "react";
-import api from "../../services/Api"; // tu axios configurado
+import { useState, useEffect } from "react";
+import { Accordion, Col, Form, Row, Button } from "react-bootstrap";
+import api from "../../services/Api";
 
-const Tipi = () => {
-  const [tipiId, setTipiId] = useState("");
-  const [tipi, setTipi] = useState({
-    descripcion: "",
-    codigo: "",
-  });
+const Tipi = ({ tipi, setTipi, tipiId, setTipiId, limpiar }) => {
   const [loading, setLoading] = useState(false);
 
   const handleBuscar = async () => {
@@ -33,6 +24,14 @@ const Tipi = () => {
     }
   };
 
+  // 🔹 Limpiar input y tipificación cuando se genere contacto exitoso
+  useEffect(() => {
+    if (limpiar) {
+      setTipi({ descripcion: "", codigo: "" });
+      setTipiId("");
+    }
+  }, [limpiar, setTipi, setTipiId]);
+
   return (
     <Accordion defaultActiveKey="0" className="mt-3">
       <Accordion.Item eventKey="0">
@@ -40,13 +39,12 @@ const Tipi = () => {
         <Accordion.Body>
           <Form>
             <Row className="mb-3">
-              {/* ID */}
               <Form.Group as={Col} md="3" controlId="formTipiId">
                 <Form.Label>ID Tipificación</Form.Label>
                 <div className="d-flex">
                   <Form.Control
                     type="text"
-                    placeholder="Ingrese ID"
+                    placeholder="Tipificacion"
                     value={tipiId}
                     onChange={(e) => setTipiId(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && handleBuscar()}
@@ -62,13 +60,11 @@ const Tipi = () => {
                 </div>
               </Form.Group>
 
-              {/* Descripción */}
               <Form.Group as={Col} md="4" controlId="formDescripcion">
                 <Form.Label>Descripción</Form.Label>
                 <Form.Control type="text" value={tipi.descripcion} readOnly />
               </Form.Group>
 
-              {/* Código */}
               <Form.Group as={Col} md="3" controlId="formCodigo">
                 <Form.Label>Código</Form.Label>
                 <Form.Control type="text" value={tipi.codigo} readOnly />

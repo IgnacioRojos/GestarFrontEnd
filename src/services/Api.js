@@ -2,9 +2,9 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
+  timeout: 10000,
 });
 
-// Interceptor para enviar token en cada request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
