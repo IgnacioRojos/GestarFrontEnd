@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Accordion, Col, Form, Row, Button } from "react-bootstrap";
+import { Card, Col, Form, Row, Button } from "react-bootstrap";
 import api from "../../services/Api";
+import "./tipi.css"
 
 const Tipi = ({ tipi, setTipi, tipiId, setTipiId, limpiar }) => {
   const [loading, setLoading] = useState(false);
@@ -33,47 +34,50 @@ const Tipi = ({ tipi, setTipi, tipiId, setTipiId, limpiar }) => {
   }, [limpiar, setTipi, setTipiId]);
 
   return (
-    <Accordion defaultActiveKey="0" className="mt-3">
-      <Accordion.Item eventKey="0">
-        <Accordion.Header>Tipificación</Accordion.Header>
-        <Accordion.Body>
-          <Form>
-            <Row className="mb-3">
-              <Form.Group as={Col} md="3" controlId="formTipiId">
-                <Form.Label>ID Tipificación</Form.Label>
-                <div className="d-flex">
-                  <Form.Control
-                    type="text"
-                    placeholder="Tipificacion"
-                    value={tipiId}
-                    onChange={(e) => setTipiId(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && handleBuscar()}
-                  />
-                  <Button
-                    variant="primary"
-                    className="ms-2"
-                    onClick={handleBuscar}
-                    disabled={!tipiId || loading}
-                  >
-                    {loading ? "Buscando..." : "Buscar"}
-                  </Button>
-                </div>
-              </Form.Group>
+    <Card className="mt-3 shadow-sm border-0">
+      <Card.Header
+        style={{
+          backgroundColor: "var(--color-principal)",
+          color: "white",
+          fontWeight: "bold",
+        }}
+      >
+        Tipificación
+      </Card.Header>
 
-              <Form.Group as={Col} md="4" controlId="formDescripcion">
-                <Form.Label>Descripción</Form.Label>
-                <Form.Control type="text" value={tipi.descripcion} readOnly />
-              </Form.Group>
+      <Card.Body style={{ maxHeight: "160px", overflowY: "auto" }}>
+        <Form>
+          <Row className="mb-3">
+            <Form.Group as={Col} md="4" controlId="formTipiId">
+              <Form.Label>ID Tipificación</Form.Label>
+              <div className="d-flex">
+                <Form.Control
+                  type="text"
+                  placeholder=""
+                  value={tipiId}
+                  onChange={(e) => setTipiId(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleBuscar()}
+                />
+                <Button
+                  variant="primary"
+                  className="ms-2"
+                  onClick={handleBuscar}
+                  disabled={!tipiId || loading}
+                >
+                  {loading ? "Buscando..." : "Buscar"}
+                </Button>
+              </div>
+            </Form.Group>
 
-              <Form.Group as={Col} md="3" controlId="formCodigo">
-                <Form.Label>Código</Form.Label>
-                <Form.Control type="text" value={tipi.codigo} readOnly />
-              </Form.Group>
-            </Row>
-          </Form>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
+            <Form.Group as={Col} md="7" controlId="formDescripcion">
+              <Form.Label>Descripción</Form.Label>
+              <Form.Control type="text" value={tipi.descripcion} readOnly />
+            </Form.Group>
+
+          </Row>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 };
 

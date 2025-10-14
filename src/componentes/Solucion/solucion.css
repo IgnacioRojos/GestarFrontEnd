@@ -1,0 +1,12 @@
+#solucionTextarea textarea.form-control {
+  resize: both !important;        
+  overflow: auto !important;      
+  min-width: 100%;                
+  min-height: 80px;
+  max-width: none !important;     
+  width: auto !important;         
+  display: inline-block !important; 
+  font-size: 0.95rem;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,88 @@
+/* === DATOSCLIENTES === */
+
+/* Contenedor general */
+.datos-clientes {
+  background-color: var(--color-blanco);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+
+.datos-clientes:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Espaciado entre campos */
+.datos-clientes .input-group,
+.datos-clientes .form-group {
+  margin-bottom: 1rem;
+}
+
+/* Etiquetas de los campos */
+.datos-clientes .form-label {
+  font-weight: 600;
+  color: var(--color-texto-secundario);
+  margin-bottom: 4px;
+  display: block;
+  margin-right: 5px;
+}
+
+
+/* Inputs uniformes */
+.datos-clientes .form-control {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  padding: 0.55rem 0.75rem;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}*/
+
+.datos-clientes .form-control:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+/* Botón de búsqueda */
+.datos-clientes .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  border-radius: 8px;
+  padding: 0.55rem 1.25rem;
+  font-weight: 500;
+}
+
+.datos-clientes .btn-primary:hover {
+  background-color: var(--color-principal-hover);
+  border-color: var(--color-principal-hover);
+}
+
+/* Campo de nota */
+.datos-clientes textarea.form-control {
+  resize: none;
+  border-radius: 10px;
+}
+
+/* Transiciones suaves */
+.datos-clientes input,
+.datos-clientes textarea,
+.datos-clientes button {
+  transition: all 0.2s ease;
+}
+
+/* === Responsividad === */
+@media (max-width: 768px) {
+  .datos-clientes {
+    padding: 15px;
+  }
+
+  .datos-clientes .btn-primary {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .datos-clientes .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

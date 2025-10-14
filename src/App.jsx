@@ -1,4 +1,3 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./componentes/Login/login";
@@ -7,6 +6,8 @@ import PrivateRoute from "./routes/privateRoutes"; // Ruta protegida
 import Buscador from './pages/Buscador';
 import BuscadorFiltro from './pages/BuscadorFiltro';
 import PanelSupervisores from './pages/PanelSupervisores';
+
+
 
 function App() {
   return (

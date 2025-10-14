@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../services/Api"; // Axios configurado
+import "../styles/panelSupervisores.css"
 
 const PanelSupervisores = () => {
   const [supervisor, setSupervisor] = useState("");
@@ -77,7 +78,7 @@ const PanelSupervisores = () => {
         <h4>Crear nuevo usuario</h4>
         <Form onSubmit={handleCrearUsuario}>
           <Form.Group className="mb-2">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Usuario</Form.Label>
             <Form.Control
               type="text"
               value={nuevoUsuario.username}
@@ -85,7 +86,7 @@ const PanelSupervisores = () => {
             />
           </Form.Group>
           <Form.Group className="mb-2">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Contraseña</Form.Label>
             <Form.Control
               type="password"
               value={nuevoUsuario.password}

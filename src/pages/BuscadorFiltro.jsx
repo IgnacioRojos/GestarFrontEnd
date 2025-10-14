@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import api from "../services/Api";
+import "../styles/buscadorFiltro.css"
 
 const BuscadorFiltro = () => {
   const [dni, setDni] = useState("");
@@ -28,7 +29,7 @@ const BuscadorFiltro = () => {
   };
 
   return (
-    <>
+    <div className="buscador-filtro-container">
       <Form className="d-flex mb-3" onSubmit={e => e.preventDefault()}>
         <Form.Control
           placeholder="DNI"
@@ -86,7 +87,7 @@ const BuscadorFiltro = () => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

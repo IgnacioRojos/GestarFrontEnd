@@ -1,0 +1,106 @@
+/* Contenedor principal del buscador */
+.buscador-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: var(--color-fondo, #f8f9fa);
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Formulario de búsqueda */
+.buscador-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+.buscador-form .form-control {
+  flex: 1;
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.buscador-form .form-control:focus {
+  border-color: var(--color-principal, #0d6efd);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Botón de búsqueda */
+.buscador-form .btn {
+  background-color: var(--color-principal, #0d6efd);
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.buscador-form .btn:hover {
+  background-color: var(--color-principal-hover, #0b5ed7);
+  transform: translateY(-1px);
+}
+
+/* Tabla de resultados */
+.buscador-table {
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.buscador-table table {
+  margin: 0;
+}
+
+.buscador-table thead {
+  background-color: var(--color-principal, #0d6efd);
+  color: white;
+  text-align: center;
+}
+
+.buscador-table th,
+.buscador-table td {
+  vertical-align: middle !important;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.buscador-table tbody tr:hover {
+  background-color: #f2f5ff;
+}
+
+/* Mensaje sin resultados */
+.no-results {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-secundario, #6c757d);
+  padding: 1.5rem 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .buscador-form {
+    flex-direction: column;
+    max-width: 90%;
+  }
+
+  .buscador-form .btn {
+    width: 100%;
+  }
+
+  .buscador-table {
+    font-size: 0.85rem;
+  }
+}

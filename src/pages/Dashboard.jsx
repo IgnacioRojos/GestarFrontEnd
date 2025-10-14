@@ -6,13 +6,16 @@ import Tipi from "../componentes/Tipificacion/tipi";
 import Solucion from "../componentes/Solucion/solucion";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import api from "../services/Api"; // tu axios configurado
+import Spinner from "react-bootstrap/Spinner";
+import Modal from "react-bootstrap/Modal"; // ✅ nuevo import
+import api from "../services/Api";
+import "../styles/dasboard.css";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({ username: "", role: "" });
+  const location = useLocation();
 
-  // Estados de los hijos
+  const [user, setUser] = useState({ username: "", role: "" });
   const [cliente, setCliente] = useState({
     nombre: "",
     apellido: "",
@@ -23,9 +26,14 @@ const Dashboard = () => {
   const [nota, setNota] = useState("");
   const [tipi, setTipi] = useState({ descripcion: "", codigo: "", id: "" });
   const [comentario, setComentario] = useState("");
-  const [tipiId, setTipiId] = useState(""); // input local de Tipificación
-  const [limpiar, setLimpiar] = useState(false); // trigger para limpiar inputs hijos
+  const [tipiId, setTipiId] = useState("");
+  const [limpiar, setLimpiar] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+
+  // ✅ Estado del modal
+  const [showModal, setShowModal] = useState(false);
+  const [gestionId, setGestionId] = useState(null);
 
   useEffect(() => {
     const username = localStorage.getItem("username");
@@ -69,21 +77,21 @@ const Dashboard = () => {
         motivo: tipi.codigo,
         notas: nota,
         comentario,
-        estado
+        estado,
       };
 
       const res = await api.post("/api/contactos", contactoCompleto);
 
-      alert(`Contacto ${estado} correctamente\nNúmero de gestión: ${res.data.gestionId}`);
+      // ✅ Mostrar el número de gestión en un modal
+      setGestionId(res.data.gestionId);
+      setShowModal(true);
 
-      // 🔹 Limpiar campos **después** de crear contacto
-      setCliente(prev => ({ ...prev, nombre: "", apellido: "", telefono: "", email: "" }));
+      setCliente({ nombre: "", apellido: "", telefono: "", email: "", dni: "" });
       setNota("");
       setTipi({ descripcion: "", codigo: "", id: "" });
       setTipiId("");
       setComentario("");
-      setLimpiar(true); // trigger para limpiar input DNI
-
+      setLimpiar(true);
     } catch (error) {
       console.error("Error al crear contacto:", error.response?.data || error);
       alert(error.response?.data?.message || "No se pudo crear el contacto");
@@ -92,14 +100,22 @@ const Dashboard = () => {
     }
   };
 
-  const location = useLocation();
-  const isBusqueda = location.pathname.includes("/dashboard/gestiones/buscar") || 
-                   location.pathname.includes("/dashboard/gestiones/filtro") || 
-                   location.pathname.includes("/dashboard/gestiones/panel");
+  const handleNavigate = (path) => {
+    setIsNavigating(true);
+    setTimeout(() => {
+      navigate(path);
+      setIsNavigating(false);
+    }, 500);
+  };
+
+  const isBusqueda =
+    location.pathname.includes("/dashboard/gestiones/buscar") ||
+    location.pathname.includes("/dashboard/gestiones/filtro") ||
+    location.pathname.includes("/dashboard/gestiones/panel");
 
   return (
-    <div className="dashboard container mt-4">
-      {/* Barra superior con usuario y botón */}
+    <div className="dashboard mt-0">
+      {/* Barra superior */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2>Gestión de Contactos</h2>
         <div>
@@ -112,126 +128,84 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Menú de opciones */}
-      <div className="mb-4 d-flex gap-2">
-        <Button onClick={() => navigate("/dashboard/gestiones/buscar")} variant="primary">
-          Buscar gestión
-        </Button>
-        <Button onClick={() => navigate("/dashboard/gestiones/filtro")} variant="secondary">
-          Buscar por DNI y estado
-        </Button>
-        <Button onClick={() => navigate("/dashboard/gestiones/panel")} variant="success">
-          Panel supervisores
-        </Button>
-        <Button onClick={() => navigate("/dashboard")} variant="outline-primary">
-          Crear contacto
-        </Button>
+      {/* Contenedor horizontal */}
+      <div className="dashboard-content">
+        <div className="sidebar-buttons">
+          <Button onClick={() => handleNavigate("/dashboard/gestiones/buscar")} variant="primary">
+            Buscar gestión
+          </Button>
+          <Button onClick={() => handleNavigate("/dashboard/gestiones/filtro")} variant="secondary">
+            Buscar por DNI y estado
+          </Button>
+          <Button onClick={() => handleNavigate("/dashboard/gestiones/panel")} variant="success">
+            Panel supervisores
+          </Button>
+          <Button onClick={() => handleNavigate("/dashboard")} variant="outline-primary">
+            Crear contacto
+          </Button>
+        </div>
+
+        <div className="main-content">
+          {isNavigating ? (
+            <div className="spinner-overlay">
+              <div className="spinner-container">
+                <Spinner animation="border" variant="primary" role="status" style={{ width: "5rem", height: "5rem" }} />
+                <p className="mt-3">Cargando...</p>
+              </div>
+            </div>
+          ) : location.pathname.includes("/dashboard/gestiones") ? (
+            <Outlet />
+          ) : (
+            <>
+              <DatosClientes
+                cliente={cliente}
+                setCliente={setCliente}
+                nota={nota}
+                setNota={setNota}
+                limpiar={limpiar}
+                setLimpiar={setLimpiar}
+              />
+              <Tipi
+                tipi={tipi}
+                setTipi={setTipi}
+                tipiId={tipiId}
+                setTipiId={setTipiId}
+                limpiar={limpiar}
+                setLimpiar={setLimpiar}
+              />
+              <Solucion comentario={comentario} setComentario={setComentario} />
+
+              <ButtonGroup size="md" className="mt-3"> {/* 🔹 botones más chicos */}
+                <Button disabled={loading} onClick={() => handleCrearContacto("solucionado")}>
+                  {loading ? "Cargando..." : "Solucionar"}
+                </Button>
+                <Button disabled={loading} onClick={() => handleCrearContacto("derivado")}>
+                  {loading ? "Cargando..." : "Derivar"}
+                </Button>
+              </ButtonGroup>
+            </>
+          )}
+        </div>
       </div>
 
-      {/* Contenido principal */}
-      {location.pathname.includes("/dashboard/gestiones") ? (
-        // 🔹 Si estamos en alguna ruta de búsqueda o panel, mostrar solo Outlet
-        <Outlet />
-      ) : (
-        // 🔹 Si estamos en el Dashboard principal, mostrar creación de contacto
-        <>
-          <DatosClientes 
-            cliente={cliente} 
-            setCliente={setCliente} 
-            nota={nota} 
-            setNota={setNota} 
-            limpiar={limpiar}
-            setLimpiar={setLimpiar}
-          />
-          <Tipi 
-            tipi={tipi} 
-            setTipi={setTipi} 
-            tipiId={tipiId} 
-            setTipiId={setTipiId} 
-            limpiar={limpiar}
-            setLimpiar={setLimpiar}
-          />
-          <Solucion comentario={comentario} setComentario={setComentario} />
-
-          {/* Botones Solucionar / Derivar */}
-          <ButtonGroup size="lg" className="mt-3">
-            <Button
-              disabled={loading}
-              onClick={() => handleCrearContacto("solucionado")}
-            >
-              {loading ? "Cargando..." : "Solucionar"}
-            </Button>
-            <Button
-              disabled={loading}
-              onClick={() => handleCrearContacto("derivado")}
-            >
-              {loading ? "Cargando..." : "Derivar"}
-            </Button>
-          </ButtonGroup>
-        </>
-      )}
+      {/* ✅ Modal de confirmación */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Contacto creado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          <p>El contacto fue registrado correctamente.</p>
+          <h5 className="mt-2">Número de gestión:</h5>
+          <h3 className="text-primary fw-bold">{gestionId}</h3>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setShowModal(false)}>
+            Aceptar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 export default Dashboard;
-
-
-/*
- <div className="dashboard container mt-4">
-      {/* Barra superior con usuario y botón */
-/*      <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2>Gestión de Contactos</h2>
-        <div>
-          <span className="me-3">
-            Usuario: <strong>{user.username}</strong> ({user.role})
-          </span>
-          <Button variant="danger" onClick={handleLogout}>
-            Cerrar Sesión
-          </Button>
-        </div>
-      </div>
-
-       {/* Menú de opciones */
-    
- /*     <div className="mb-4 d-flex gap-2">
-        <Button onClick={() => navigate("/dashboard/gestiones/buscar")} variant="primary">Buscar gestión</Button>
-        <Button onClick={() => navigate("/dashboard/gestiones/filtro")} variant="secondary">Buscar por DNI y estado</Button>
-        <Button onClick={() => navigate("/dashboard/gestiones/panel")} variant="success">Panel supervisores</Button>
-      </div>
-      <Outlet/>
-
-      {/* Componentes hijos */
- /*     <DatosClientes 
-        cliente={cliente} 
-        setCliente={setCliente} 
-        nota={nota} 
-        setNota={setNota} 
-        limpiar={limpiar}
-        setLimpiar={setLimpiar}
-      />
-      <Tipi 
-        tipi={tipi} 
-        setTipi={setTipi} 
-        tipiId={tipiId} 
-        setTipiId={setTipiId} 
-        limpiar={limpiar}
-      />
-      <Solucion comentario={comentario} setComentario={setComentario} />
-
-      {/* Botones Solucionar / Derivar */
-/*      <ButtonGroup size="lg" className="mt-3">
-        <Button
-          disabled={loading}
-          onClick={() => handleCrearContacto("solucionado")}
-        >
-          Solucionar
-        </Button>
-        <Button
-          disabled={loading}
-          onClick={() => handleCrearContacto("derivado")}
-        >
-          Derivar
-        </Button>
-      </ButtonGroup>
-    </div> */

@@ -1,0 +1,121 @@
+.panel-supervisores {
+  background-color: var(--color-blanco);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--color-texto);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== TÍTULOS ===== */
+.panel-supervisores h2 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-principal);
+  text-align: center;
+}
+
+.panel-supervisores h4,
+.panel-supervisores h5 {
+  font-weight: 500;
+  color: var(--color-texto);
+  margin-bottom: 0.75rem;
+}
+
+/* ===== INFORMACIÓN DEL SUPERVISOR ===== */
+.panel-supervisores p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-texto-secundario);
+  text-align: center;
+}
+
+/* ===== FORMULARIO ===== */
+.panel-supervisores form {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.panel-supervisores .form-label {
+  font-weight: 500;
+  color: var(--color-texto);
+}
+
+.panel-supervisores .form-control,
+.panel-supervisores .form-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.6rem 0.8rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel-supervisores .form-control:focus,
+.panel-supervisores .form-select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 4px rgba(13, 110, 253, 0.3);
+}
+
+.panel-supervisores button[type="submit"] {
+  margin-top: 0.5rem;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* ===== LISTA DE USUARIOS ===== */
+.panel-supervisores ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.panel-supervisores li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f1f3f5;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.panel-supervisores li:hover {
+  background-color: #e9ecef;
+}
+
+.panel-supervisores li button {
+  background-color: var(--color-error, #dc3545);
+  color: var(--color-blanco);
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.panel-supervisores li button:hover {
+  background-color: #bb2d3b;
+  transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .panel-supervisores {
+    padding: 1.25rem;
+  }
+
+  .panel-supervisores li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .panel-supervisores li button {
+    align-self: flex-end;
+  }
+}

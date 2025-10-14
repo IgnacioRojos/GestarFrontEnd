@@ -1,0 +1,17 @@
+:root {
+  /* Colores principales */
+  --color-principal: #0d6efd; /* azul Bootstrap */
+  --color-principal-hover: #0b5ed7;
+  --color-secundario: #6c757d;
+  
+  /* Fondo y texto */
+  --color-fondo: #f8f9fa;
+  --color-blanco: #ffffff;
+  --color-texto: #212529;
+  --color-texto-secundario: #6c757d;
+
+  /* Estados */
+  --color-exito: #198754;
+  --color-error: #dc3545;
+  --color-advertencia: #ffc107;
+}

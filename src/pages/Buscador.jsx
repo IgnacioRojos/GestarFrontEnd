@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import api from "../services/Api";
+import "../styles/buscador.css"
 
 const Buscador = () => {
   const [gestionId, setGestionId] = useState("");
@@ -26,7 +27,7 @@ const Buscador = () => {
   };
 
   return (
-    <>
+    <div className="buscador-container">
       <Form className="d-flex mb-3" onSubmit={e => e.preventDefault()}>
         <Form.Control
           placeholder="Número de gestión"
@@ -73,7 +74,7 @@ const Buscador = () => {
           </tbody>
         </Table>
       )}
-    </>
+    </div>
   );
 };
 

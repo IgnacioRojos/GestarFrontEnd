@@ -1,4 +1,5 @@
 import Form from "react-bootstrap/Form";
+import "./solucion.css"
 
 const Solucion = ({ comentario, setComentario }) => {
   return (

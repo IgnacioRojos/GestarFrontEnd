@@ -1,0 +1,51 @@
+/* --- Contenedor general del card --- */
+.card {
+  border-radius: 10px;
+}
+
+/* --- Header del card --- */
+.card-header {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* --- Cuerpo del card --- */
+.card-body {
+  padding: 1rem 1.25rem;
+}
+
+/* --- Input ID Tipificación --- */
+#formTipiId input {
+  flex: 1;
+  min-width: 160px; /* ancho base mayor */
+  font-size: 0.95rem;
+  padding: 6px 10px;
+}
+
+/* --- Botón Buscar --- */
+#formTipiId button {
+  white-space: nowrap;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+}
+
+/* --- Input de descripción --- */
+#formDescripcion input {
+  width: 100%;
+  min-width: 300px; /* asegura que se vea completo */
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  background-color: #f8f9fa; /* gris claro de Bootstrap */
+  color: #212529;
+}
+
+/* --- Ajuste responsivo --- */
+@media (max-width: 768px) {
+  #formTipiId input {
+    min-width: 120px;
+  }
+
+  #formDescripcion input {
+    min-width: 100%;
+  }
+}
