@@ -59,9 +59,20 @@ GestarFrontEnd/
 Puedes iniciar sesión con el siguiente usuario de prueba:
 
 ```
+como supervisor:
+
 USUARIO: ignacio  
 CONTRASEÑA: 123456
+
+como agente:
+
+USUARIO: martin
+contraseña: Ignacio1920
+
+
 ```
+
+
 
 ---
 ## 🏷️ Tipificaciones disponibles
