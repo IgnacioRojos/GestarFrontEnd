@@ -1,7 +1,7 @@
 
-# 🚀 Gestar Front End
+# 🚀 GDC Front End
 
-**Gestar Front End** es la interfaz web desarrollada en **React JS** para el sistema de gestión de reclamos, consultas y solicitudes de clientes.  
+**GDC Front End** es la interfaz web desarrollada en **React JS** para el sistema de gestión de reclamos, consultas y solicitudes de clientes.  
 Forma parte del ecosistema **Gestar**, compuesto por un backend en Node.js y MongoDB ([Gestar Back End](https://github.com/IgnacioRojos/GestarBackEnd.git)).
 
 ---
@@ -121,7 +121,7 @@ A continuación se listan las tipificaciones actualmente registradas en la base 
 
 ## 🔗 Conexión con el Back End
 
-Este front end consume la API desarrollada en el proyecto [**Gestar Back End**](https://github.com/IgnacioRojos/GestarBackEnd.git), donde se encuentran definidas las rutas para:
+Este front end consume la API desarrollada en el proyecto [**GDC Back End**](https://github.com/IgnacioRojos/GestarBackEnd.git), donde se encuentran definidas las rutas para:
 
 - Autenticación de usuarios  
 - Gestión de reclamos, solicitudes y consultas  
