@@ -14,19 +14,55 @@
 /* Contenedor horizontal: sidebar + contenido */
 .dashboard-content {
   display: flex;
-  gap: 2rem;       /* separación sidebar - contenido */
+  gap: 2rem;      
   width: 100%;
-  align-items: flex-start; /* todo alineado arriba */
+  align-items: flex-start; 
+
 }
+
+
+
 
 /* Sidebar */
 .sidebar-buttons {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 200px; /* ancho fijo para sidebar */
+  min-width: 200px; 
+  top: 100px;            
+  left: 2rem;             
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--color-fondo); 
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+
 }
 
+.sesion {
+  background-color: var(--color-error) !important;
+  border: none !important;
+  color: #fff !important;
+  transition: transform 0.1s ease, background-color 0.3s ease;
+}
+
+.sesion:hover,
+.sesion:focus,
+.sesion:active,
+.sesion.show,
+.btn-check:checked + .sesion {
+  background-color: #B0413E !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+.sesion:active {
+  transform: scale(0.97);
+}
 .sidebar-buttons button {
   width: 100%;
   text-align: left;
@@ -34,10 +70,11 @@
 
 /* Contenido principal */
 .main-content {
-  flex: 1;           /* ocupa todo el espacio disponible a la derecha */
+  flex: 1;           
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
 }
 
 /* Botones inferiores */
@@ -62,11 +99,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo translúcido */
+  background-color: rgba(255, 255, 255, 0.8); 
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000; /* Por encima de todo */
+  z-index: 2000; 
 }
 
 .spinner-container {
@@ -76,11 +113,26 @@
   justify-content: center;
 }
 
+.spinner-personalizado {
+  color: var(--color-principal2) !important; 
+  border-width: 0.4em !important;
+}
+
+/* Forzar el borde a tener ese color */
+.spinner-personalizado.spinner-border {
+  border-top-color: var(--color-principal2) !important;
+  border-right-color: transparent !important;
+  border-bottom-color: transparent !important;
+  border-left-color: transparent !important;
+}
+
+/* Texto debajo del spinner */
 .spinner-container p {
-  color: #0d6efd;
+  color: var(--color-principal2) !important;
   font-size: 1.3rem;
   font-weight: 500;
   margin-top: 15px;
+  text-align: center;
 }
 
 .dashboard .btn-group .btn {
@@ -92,18 +144,139 @@
   transition: all 0.2s ease;
 }
 
-/* Modal más centrado y limpio */
-.modal-content {
-  border-radius: 1rem;
-  padding: 1rem;
+/* --- Botones de acción (Solucionar / Derivar / Buscar) --- */
+.botonAccion,
+.botonBuscar {
+  background-color: #00695C !important;
+  border-color: #00695C !important;
+  color: #fff !important;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
 }
 
+.botonAccion:hover,
+.botonBuscar:hover,
+.botonAccion:focus,
+.botonBuscar:focus,
+.botonAccion:active,
+.botonBuscar:active,
+.botonAccion:disabled,
+.botonBuscar:disabled {
+  background-color: #00695C !important;
+  border-color: #00695C !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+}
+
+/* (opcional) Efecto sutil de interacción */
+.botonAccion:hover,
+.botonBuscar:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal más centrado y limpio */
+.modal-content {
+  background-color: var(--color-fondo) !important; 
+  color: var(--color-texto) !important;           
+  border-radius: 1rem !important;
+  padding: 1rem !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+  border: none !important;
+}
+
+/* Header del modal */
+.modal-header {
+  background-color: var(--color-principal) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+  border-radius: 1rem 1rem 0 0 !important;
+}
+
+/* Título dentro del header */
+.modal-title {
+  color: #fff !important;
+}
+
+/* Botón de cerrar */
+.modal-header .btn-close {
+  filter: invert(1); 
+}
+
+/* Body del modal */
+.modal-body {
+  background-color: var(--color-fondo) !important;
+  color: var(--color-texto) !important;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Footer del modal */
+.modal-footer {
+  background-color: var(--color-fondo) !important;
+  border-top: none !important;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-body h3 {
+  color: var(--color-principal) !important;
+}
+
+/* Botones dentro del modal */
+.modal-footer .btn {
+  background-color: var(--color-principal2) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-footer .btn:hover,
+.modal-footer .btn:focus,
+.modal-footer .btn:active {
+  background-color: var(--color-principal) !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
+}
+.botonbusqueda {
+  background-color: var(--color-secundario) !important;
+  border-color: var(--color-secundario) !important;
+  color: #fff !important;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.botonbusqueda:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.botonbusqueda:hover,
+.botonbusqueda:hover,
+.botonbusqueda:focus,
+.botonbusqueda:focus,
+.botonbusqueda:active,
+.botonbusqueda:active,
+.botonbusqueda:disabled,
+.botonbusqueda:disabled{
+  background-color: var(--color-secundario) !important;
+  border-color: var(--color-secundario) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+
+}
 
 
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-content {
-    flex-direction: column; /* sidebar arriba, contenido abajo */
+    flex-direction: column; 
   }
 
   .sidebar-buttons {

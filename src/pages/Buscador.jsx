@@ -1,28 +1,39 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import Modal from "react-bootstrap/Modal";
 import api from "../services/Api";
 import "../styles/buscador.css"
 
 const Buscador = () => {
   const [gestionId, setGestionId] = useState("");
   const [gestiones, setGestiones] = useState([]);
-  const [buscado, setBuscado] = useState(false); // 🔹 nuevo estado
+  const [buscado, setBuscado] = useState(false); 
+  const [showModal, setShowModal] = useState(false); 
+  const [modalMessage, setModalMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleBuscar = async () => {
-    if (!gestionId.trim()) return alert("Ingresá un número de gestión");
+
+    if (!gestionId.trim()) {
+      setModalMessage("Ingresá un número de gestión"); 
+      setShowModal(true); 
+      return;
+    }
 
     try {
       const res = await api.get(`/api/contactos/${gestionId}`);
-      // Si la API devuelve un solo objeto, lo pasamos a array para mapearlo
+
       const data = Array.isArray(res.data) ? res.data : [res.data];
       setGestiones(data);
     } catch (error) {
       setGestiones([]);
-      //alert("No se encontraron gestiones");
+
     } finally {
-      setBuscado(true); // 🔹 marca que se realizó una búsqueda
+      setBuscado(true); 
     }
   };
 
@@ -35,7 +46,7 @@ const Buscador = () => {
           onChange={e => setGestionId(e.target.value)}
           className="me-2"
         />
-        <Button onClick={handleBuscar}>Buscar</Button>
+        <Button onClick={handleBuscar} className="botonBuscar">Buscar</Button>
       </Form>
 
       {buscado && (
@@ -62,6 +73,15 @@ const Buscador = () => {
                   <td>{g.notas || "-"}</td>
                   <td>{g.comentario || "-"}</td>
                   <td>{g.estado || "-"}</td>
+                  <td>
+                    <Button
+                      className="botonGestion"
+                      size="sm"
+                      onClick={() => navigate(`/dashboard/gestiones/detalle/${g.gestionId}`)}
+                    >
+                      Ver gestión
+                    </Button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -74,6 +94,18 @@ const Buscador = () => {
           </tbody>
         </Table>
       )}
+      {/* Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header >
+          <Modal.Title>Atención</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

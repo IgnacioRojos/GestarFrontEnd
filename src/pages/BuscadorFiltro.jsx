@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import Modal from "react-bootstrap/Modal"; 
 import api from "../services/Api";
 import "../styles/buscadorFiltro.css"
 
@@ -10,10 +12,15 @@ const BuscadorFiltro = () => {
   const [estado, setEstado] = useState("");
   const [gestiones, setGestiones] = useState([]);
   const [buscado, setBuscado] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
+  const [modalMessage, setModalMessage] = useState(""); 
+
+  const navigate = useNavigate();
 
   const handleBuscar = async () => {
     if (!dni.trim() || !estado.trim()) {
-      alert("Completá el DNI y el estado");
+      setModalMessage("Completá el DNI y el estado"); 
+      setShowModal(true); 
       return;
     }
 
@@ -40,13 +47,13 @@ const BuscadorFiltro = () => {
         <Form.Select
           value={estado}
           onChange={e => setEstado(e.target.value)}
-          className="me-2"
+          className="me-2 botonBus" 
         >
           <option value="">Seleccionar estado...</option>
           <option value="solucionado">Solucionado</option>
           <option value="derivado">Derivado</option>
         </Form.Select>
-        <Button onClick={handleBuscar}>Buscar</Button>
+        <Button onClick={handleBuscar} className="botonFiltro">Buscar</Button>
       </Form>
 
       {buscado && (
@@ -61,6 +68,7 @@ const BuscadorFiltro = () => {
               <th>Notas</th>
               <th>Comentario</th>
               <th>Estado</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -75,11 +83,20 @@ const BuscadorFiltro = () => {
                   <td>{g.notas || "-"}</td>
                   <td>{g.comentario || "-"}</td>
                   <td>{g.estado || "-"}</td>
+                  <td>
+                    <Button
+                      className="botonGestion"
+                      size="sm"
+                      onClick={() => navigate(`/dashboard/gestiones/detalle/${g.gestionId}`)}
+                    >
+                      Ver gestión
+                    </Button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={8} className="text-center">
+                <td colSpan={9} className="text-center">
                   No hay gestiones que coincidan
                 </td>
               </tr>
@@ -87,6 +104,19 @@ const BuscadorFiltro = () => {
           </tbody>
         </Table>
       )}
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header >
+          <Modal.Title>Atención</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

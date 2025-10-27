@@ -21,13 +21,28 @@
   color: var(--color-principal);
 }
 
+.contaseña{
+  margin-right: 5px;
+}
+
 .login-button {
-  background-color: var(--color-principal);
-  border: none;
-  transition: background-color 0.3s ease;
+  background-color: var(--color-principal) !important;
+  border: none !important;
+  color: #fff !important;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.login-button:hover {
-  background-color: var(--color-principal-hover);
+.login-button:hover,
+.login-button:focus,
+.login-button:active,
+.login-button.show,
+.btn-check:checked + .login-button {
+  background-color: var(--color-principal-hover) !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
 }
 
+.login-button:active {
+  transform: scale(0.98);
+}

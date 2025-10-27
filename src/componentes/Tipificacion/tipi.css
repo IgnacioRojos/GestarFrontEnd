@@ -29,13 +29,31 @@
   padding: 6px 14px;
 }
 
+.botonBuscar {
+  background-color: #00695C !important;
+  border-color: #00695C !important;
+  color: #fff !important;
+}
+
+.botonBuscar:hover,
+.botonBuscar:focus,
+.botonBuscar:active,
+.botonBuscar:disabled {
+  background-color: #00695C !important;
+  border-color: #00695C !important;
+  color: #fff !important;
+  opacity: 1 !important; 
+  box-shadow: none !important;
+}
+
+
 /* --- Input de descripción --- */
 #formDescripcion input {
   width: 100%;
-  min-width: 300px; /* asegura que se vea completo */
+  min-width: 300px; 
   font-size: 0.95rem;
   padding: 6px 10px;
-  background-color: #f8f9fa; /* gris claro de Bootstrap */
+  background-color: #f8f9fa; 
   color: #212529;
 }
 

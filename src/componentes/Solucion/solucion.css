@@ -1,12 +1,30 @@
-#solucionTextarea textarea.form-control {
-  resize: both !important;        
-  overflow: auto !important;      
-  min-width: 100%;                
+/* Título visible y ancho completo */
+.titulo {
+  display: block;
+  width: 100%;
+  background-color: #00695C; 
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.5rem 0;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  padding-left: 19px;
+  z-index: 10;
+}
+
+
+/* Ajustes generales del textarea dentro del card */
+#solucionTextarea .form-control {
+  width: 100%;
   min-height: 80px;
-  max-width: none !important;     
-  width: auto !important;         
-  display: inline-block !important; 
   font-size: 0.95rem;
   padding: 8px 10px;
   box-sizing: border-box;
+  resize: both !important;
+  overflow: auto !important;
+  border-radius: 4px; 
+  border: 1px solid #ced4da;
 }

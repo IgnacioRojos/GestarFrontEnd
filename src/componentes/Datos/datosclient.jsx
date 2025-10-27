@@ -2,31 +2,40 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+import Modal from "react-bootstrap/Modal";
 import api from "../../services/Api";
 import "./datosclient.css"
 
 const DatosClientes = ({ cliente, setCliente, nota, setNota, limpiar, setLimpiar }) => {
   const [dni, setDni] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
 
   useEffect(() => {
     if (limpiar) {
-      setDni(""); // 🔹 Limpiar input DNI
+      setDni(""); // Limpiar input DNI
       setNota("");
       setLimpiar(false); // avisar al padre que ya se limpió
     }
-  }, [limpiar, setCliente, setNota, setLimpiar]);
-
+  }, [limpiar, setNota, setLimpiar]);
 
   const handleBuscar = async () => {
     if (!dni.trim()) return;
+
     try {
       const res = await api.get(`/api/clientes/${dni.trim()}`);
       setCliente(res.data);
       localStorage.setItem("clienteId", res.data._id);
     } catch (error) {
       console.error(error);
-      alert("Cliente no encontrado");
+      setModalMessage("Cliente no encontrado");
+      setShowModal(true);
       setCliente({ nombre: "", apellido: "", telefono: "", email: "", dni: "" });
+
+
+      setTimeout(() => {
+        setShowModal(false);
+      }, 2500);
     }
   };
 
@@ -69,6 +78,14 @@ const DatosClientes = ({ cliente, setCliente, nota, setNota, limpiar, setLimpiar
           onChange={(e) => setNota(e.target.value)}
         />
       </Form.Group>
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header>
+          <Modal.Title>Atención</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center">{modalMessage}</Modal.Body>
+      </Modal>
     </div>
   );
 };

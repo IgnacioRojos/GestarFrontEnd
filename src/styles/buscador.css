@@ -31,13 +31,13 @@
 }
 
 .buscador-form .form-control:focus {
-  border-color: var(--color-principal, #0d6efd);
+  border-color: var(--color-principal);
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
 
 /* Botón de búsqueda */
 .buscador-form .btn {
-  background-color: var(--color-principal, #0d6efd);
+  background-color: var(--color-principal);
   border: none;
   padding: 0.6rem 1.4rem;
   border-radius: 8px;
@@ -46,7 +46,7 @@
 }
 
 .buscador-form .btn:hover {
-  background-color: var(--color-principal-hover, #0b5ed7);
+  background-color: var(--color-principal-hover);
   transform: translateY(-1px);
 }
 
@@ -65,7 +65,7 @@
 }
 
 .buscador-table thead {
-  background-color: var(--color-principal, #0d6efd);
+  background-color: var(--color-principal);
   color: white;
   text-align: center;
 }
@@ -81,11 +81,36 @@
   background-color: #f2f5ff;
 }
 
+
+.botonGestion {
+  background-color: var(--color-principal) !important; 
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none !important;
+}
+
+/* Hover / Focus / Active: mantener color y quitar bordes azules */
+.botonGestion:hover,
+.botonGestion:focus,
+.botonGestion:active,
+.botonGestion:visited {
+  background-color: var(--color-principal) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(1.03);
+  outline: none !important;
+}
+
 /* Mensaje sin resultados */
 .no-results {
   text-align: center;
   font-style: italic;
-  color: var(--color-secundario, #6c757d);
+  color: var(--color-secundario);
   padding: 1.5rem 0;
 }
 

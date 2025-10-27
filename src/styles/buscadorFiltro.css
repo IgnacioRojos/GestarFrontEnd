@@ -1,0 +1,94 @@
+.botonFiltro{
+  background-color: var(--color-principal) !important; 
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: none !important;
+}
+
+
+
+.botonFiltro:hover,
+.botonFiltro:focus,
+.botonFiltro:active,
+.botonFiltro:visited {
+  background-color: var(--color-principal) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(1.03);
+  outline: none !important;
+}
+
+/* Modal más centrado y limpio */
+.modal-content {
+  background-color: var(--color-fondo) !important; /* fondo principal */
+  color: var(--color-texto) !important;            /* texto principal */
+  border-radius: 1rem !important;
+  padding: 1rem !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+  border: none !important;
+}
+
+/* Header del modal */
+.modal-header {
+  background-color: var(--color-principal) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  border-bottom: none !important;
+  border-radius: 1rem 1rem 0 0 !important;
+}
+
+/* Título dentro del header */
+.modal-title {
+  color: #fff !important;
+}
+
+/* Botón de cerrar */
+.modal-header .btn-close {
+  filter: invert(1); /* cambia el color del ícono de cerrar */
+}
+
+/* Body del modal */
+.modal-body {
+  background-color: var(--color-fondo) !important;
+  color: var(--color-texto) !important;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Footer del modal */
+.modal-footer {
+  background-color: var(--color-fondo) !important;
+  border-top: none !important;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-body h3 {
+  color: var(--color-principal) !important;
+}
+
+/* Botones dentro del modal */
+.modal-footer .btn {
+  background-color: var(--color-principal2) !important;
+  color: #fff !important;
+  border: none !important;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.modal-footer .btn:hover,
+.modal-footer .btn:focus,
+.modal-footer .btn:active {
+  background-color: var(--color-principal) !important;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2) !important;
+}
+
+/*el boton para entrar a la gestion comparte el mismo nombre de clase para tener los mismos estilos que el otro buscador*/

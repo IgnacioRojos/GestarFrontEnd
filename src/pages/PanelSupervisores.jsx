@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import api from "../services/Api"; // Axios configurado
+import Modal from "react-bootstrap/Modal"; 
+import api from "../services/Api"; 
 import "../styles/panelSupervisores.css"
 
 const PanelSupervisores = () => {
@@ -9,6 +10,12 @@ const PanelSupervisores = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [nuevoUsuario, setNuevoUsuario] = useState({ username: "", password: "", role: "agente" });
   const [loading, setLoading] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalTitle, setModalTitle] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [usuarioEliminar, setUsuarioEliminar] = useState(null);
 
   const token = localStorage.getItem("token");
 
@@ -18,22 +25,28 @@ const PanelSupervisores = () => {
     fetchUsuarios();
   }, []);
 
-    const fetchUsuarios = async () => {
-        try {
-            const res = await api.get("/api/auth/users", {
-            headers: { Authorization: `Bearer ${token}` },
-            });
-            console.log("Usuarios:", res.data);
-            setUsuarios(res.data);
-        } catch (error) {
-            console.error("Error al obtener usuarios:", error);
-        }
-    };
+  const fetchUsuarios = async () => {
+    try {
+      const res = await api.get("/api/auth/users", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUsuarios(res.data);
+    } catch (error) {
+      console.error("Error al obtener usuarios:", error);
+      showErrorModal("Error", "No se pudieron obtener los usuarios");
+    }
+  };
+
+  const showErrorModal = (title, message) => {
+    setModalTitle(title);
+    setModalMessage(message);
+    setShowModal(true);
+  };
 
   const handleCrearUsuario = async (e) => {
     e.preventDefault();
     if (!nuevoUsuario.username || !nuevoUsuario.password) {
-      alert("Todos los campos son obligatorios");
+      showErrorModal("Error", "Todos los campos son obligatorios");
       return;
     }
     setLoading(true);
@@ -41,30 +54,36 @@ const PanelSupervisores = () => {
       const res = await api.post("/api/auth/register", nuevoUsuario, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      alert(res.data.message);
+      showErrorModal("Éxito", res.data.message);
       setNuevoUsuario({ username: "", password: "", role: "agente" });
       fetchUsuarios();
     } catch (error) {
-      alert(error.response?.data?.message || "Error al crear usuario");
+      showErrorModal("Error", error.response?.data?.message || "Error al crear usuario");
     } finally {
       setLoading(false);
     }
   };
 
-    
-  const handleEliminarUsuario = async (id) => {
-    if (!window.confirm("¿Seguro que quieres eliminar este usuario?")) return;
+  const handleEliminarUsuario = (usuario) => {
+    setUsuarioEliminar(usuario);
+    setConfirmDelete(true);
+  };
 
+  const confirmEliminarUsuario = async () => {
+    if (!usuarioEliminar) return;
     try {
-        await api.delete(`/api/auth/users/${id}`, {
+      await api.delete(`/api/auth/users/${usuarioEliminar._id}`, {
         headers: { Authorization: `Bearer ${token}` }
-        });
-        alert("Usuario eliminado");
-        fetchUsuarios(); // refrescar la lista
+      });
+      showErrorModal("Éxito", "Usuario eliminado");
+      fetchUsuarios();
     } catch (error) {
-        alert(error.response?.data?.message || "Error al eliminar usuario");
+      showErrorModal("Error", error.response?.data?.message || "Error al eliminar usuario");
+    } finally {
+      setConfirmDelete(false);
+      setUsuarioEliminar(null);
     }
-   };
+  };
 
   return (
     <div className="panel-supervisores container mt-4">
@@ -103,7 +122,7 @@ const PanelSupervisores = () => {
               <option value="supervisor">Supervisor</option>
             </Form.Select>
           </Form.Group>
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} className="botonGestion">
             {loading ? "Creando..." : "Crear Usuario"}
           </Button>
         </Form>
@@ -113,16 +132,37 @@ const PanelSupervisores = () => {
       <div>
         <h5>Usuarios existentes</h5>
         <ul>
-            {usuarios.map((u) => (
-                <li key={u._id || u.username}>
-                {u.username} - {u.role} 
-                <button onClick={() => handleEliminarUsuario(u._id || u.username)}>
-                    Eliminar
-                </button>
-                </li>
-            ))}
+          {usuarios.map((u) => (
+            <li key={u._id || u.username}>
+              {u.username} - {u.role}{" "}
+              <button onClick={() => handleEliminarUsuario(u)}>Eliminar</button>
+            </li>
+          ))}
         </ul>
       </div>
+
+      {/* Modal de mensajes */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalTitle}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalMessage}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>Cerrar</Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal de confirmación para eliminar */}
+      <Modal show={confirmDelete} onHide={() => setConfirmDelete(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar eliminación</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>¿Seguro que quieres eliminar el usuario "{usuarioEliminar?.username}"?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setConfirmDelete(false)}>Cancelar</Button>
+          <Button variant="danger" onClick={confirmEliminarUsuario}>Eliminar</Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

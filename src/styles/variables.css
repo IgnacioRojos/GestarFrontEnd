@@ -1,17 +1,19 @@
 :root {
-  /* Colores principales */
-  --color-principal: #0d6efd; /* azul Bootstrap */
-  --color-principal-hover: #0b5ed7;
-  --color-secundario: #6c757d;
   
+  /* Colores principales */
+  --color-principal2: #00695C;
+  --color-principal: #2E8B92; /* teal profundo */
+  --color-principal-hover: #22777D;
+  --color-secundario: #F4A261; /* naranja arena */
+
   /* Fondo y texto */
-  --color-fondo: #f8f9fa;
-  --color-blanco: #ffffff;
-  --color-texto: #212529;
-  --color-texto-secundario: #6c757d;
+  --color-fondo: #FAFAFA;
+  --color-blanco: #FFFFFF;
+  --color-texto: #2C2C2C;
+  --color-texto-secundario: #6B6B6B;
 
   /* Estados */
-  --color-exito: #198754;
-  --color-error: #dc3545;
-  --color-advertencia: #ffc107;
+  --color-exito: #4CAF50;
+  --color-error: #E57373;
+  --color-advertencia: #E58935;
 }

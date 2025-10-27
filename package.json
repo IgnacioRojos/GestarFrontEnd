@@ -13,6 +13,7 @@
     "axios": "^1.12.2",
     "bootstrap": "^5.3.8",
     "formik": "^2.4.6",
+    "lucide-react": "^0.546.0",
     "react": "^19.1.1",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.1",
