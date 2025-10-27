@@ -130,7 +130,25 @@ Este front end consume la API desarrollada en el proyecto [**GDC Back End**](htt
 
 ---
 
-## 📸 Capturas (opcional)
+## 📸 Capturas 
+
+Login:
+<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/42f37ff0-bf75-4abb-8211-a3dca7241144" />
+
+dasboard agente:
+<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/c59f3240-f6e0-4e09-b84b-29e78d5c501a" />
+
+buscador de gestiones:
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/a9d62e3b-01f1-4108-b7c6-6c8716122337" />
+
+crear cliente:
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/2fd052bc-4426-45d2-9a6f-5446afe7b565" />
+
+
+
+dashboard supervisor:
+<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/40c2e0ba-fab4-47ba-9fd8-cd3f983e04fc" />
+
 
 > *(Podés agregar imágenes del login, dashboard o gestión de reclamos aquí para mejorar la presentación del repositorio.)*
 
