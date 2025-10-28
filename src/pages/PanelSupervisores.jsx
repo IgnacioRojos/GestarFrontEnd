@@ -143,7 +143,7 @@ const PanelSupervisores = () => {
 
       {/* Modal de mensajes */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{modalMessage}</Modal.Body>
@@ -154,7 +154,7 @@ const PanelSupervisores = () => {
 
       {/* Modal de confirmación para eliminar */}
       <Modal show={confirmDelete} onHide={() => setConfirmDelete(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Confirmar eliminación</Modal.Title>
         </Modal.Header>
         <Modal.Body>¿Seguro que quieres eliminar el usuario "{usuarioEliminar?.username}"?</Modal.Body>

@@ -96,7 +96,7 @@ const CrearCliente = () => {
 
       {/* Modal */}
       <Modal show={showModal} onHide={handleModalClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{modalTitle}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{modalMessage}</Modal.Body>

@@ -175,7 +175,7 @@ const GestionDetalle = () => {
 
       {/* Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Atención</Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">{modalMessage}</Modal.Body>
