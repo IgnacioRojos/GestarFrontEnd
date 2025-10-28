@@ -2,13 +2,16 @@
 # 🚀 GDC Front End
 
 **GDC Front End** es la interfaz web desarrollada en **React JS** para el sistema de gestión de reclamos, consultas y solicitudes de clientes.  
-Forma parte del ecosistema **Gestar**, compuesto por un backend en Node.js y MongoDB ([Gestar Back End](https://github.com/IgnacioRojos/GestarBackEnd.git)).
+Forma parte del ecosistema **Gestar**, compuesto por un backend en Node.js y MongoDB ([GDC](https://github.com/IgnacioRojos/GestarBackEnd.git)).
+
+## 🚀 Deploy
+ Aqui puedes ver el deploy del proyecto en netlify 🌐 URL[https://sistemadecontacto.netlify.app/]
 
 ---
 
 ## 📋 Descripción del proyecto
 
-El sistema **Gestar** permite registrar, administrar y dar seguimiento a los distintos contactos realizados con los clientes (reclamos, solicitudes y consultas).  
+El sistema **GDC** permite registrar, administrar y dar seguimiento a los distintos contactos realizados con los clientes (reclamos, solicitudes y consultas).  
 Desde el portal principal, los usuarios pueden autenticarse mediante un **login** y acceder a diferentes funcionalidades según su rol.
 
 Dependiendo del tipo de usuario logueado, se habilitan distintas vistas y acciones, como:
@@ -149,8 +152,6 @@ crear cliente:
 dashboard supervisor:
 <img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/40c2e0ba-fab4-47ba-9fd8-cd3f983e04fc" />
 
-
-> *(Podés agregar imágenes del login, dashboard o gestión de reclamos aquí para mejorar la presentación del repositorio.)*
 
 ---
 
