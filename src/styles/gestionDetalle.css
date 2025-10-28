@@ -1,20 +1,3 @@
-
-/* Opcional: estilo de la lista */
-.gestion-historial ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.gestion-historial li {
-  padding: 0.5rem;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.gestion-historial li:last-child {
-  border-bottom: none;
-}
-
 /* Encabezado */
 .gestion-historial h5 {
   margin-bottom: 0.75rem;

@@ -58,7 +58,7 @@ const CrearCliente = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       <h3>Crear nuevo cliente</h3>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
