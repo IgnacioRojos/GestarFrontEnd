@@ -1,27 +1,29 @@
+# 🚀 GDC Frontend
 
-# 🚀 GDC Front End
+**GDC Frontend** es la interfaz web desarrollada en **React JS** para el sistema de gestión de reclamos, consultas y solicitudes de clientes (**GDC**)
+, compuesto por un backend en Node.js y MongoDB → [GDC Back End](https://github.com/IgnacioRojos/GestarBackEnd.git).
 
-**GDC Front End** es la interfaz web desarrollada en **React JS** para el sistema de gestión de reclamos, consultas y solicitudes de clientes.  
-Forma parte del ecosistema **Gestar**, compuesto por un backend en Node.js y MongoDB ([GDC](https://github.com/IgnacioRojos/GestarBackEnd.git)).
+---
 
-## 🚀 Deploy
- Aqui puedes ver el deploy del proyecto en netlify 🌐 URL[https://sistemadecontacto.netlify.app/]
+## 🌐 Deploy
+
+Puedes ver la aplicación en producción en Netlify:  
+👉 [https://sistemadecontacto.netlify.app/](https://sistemadecontacto.netlify.app/)
 
 ---
 
 ## 📋 Descripción del proyecto
 
-El sistema **GDC** permite registrar, administrar y dar seguimiento a los distintos contactos realizados con los clientes (reclamos, solicitudes y consultas).  
-Desde el portal principal, los usuarios pueden autenticarse mediante un **login** y acceder a diferentes funcionalidades según su rol.
+El sistema **GDC (Gestión de Consultas, Derivaciones y Contactos)** permite registrar, administrar y dar seguimiento a los distintos contactos realizados con los clientes (reclamos, solicitudes y consultas).
 
-Dependiendo del tipo de usuario logueado, se habilitan distintas vistas y acciones, como:
+Los usuarios pueden autenticarse mediante un **login** y acceder a distintas funcionalidades según su rol:
 
 - 🧾 **Registro de reclamos, consultas y solicitudes**.  
 - ⚙️ **Derivación de casos** a sectores internos para su resolución.  
 - ✅ **Gestión y seguimiento** de los contactos generados.  
 - 🔍 **Resolución inmediata** de consultas según la categoría del caso.
 
-La aplicación se comunica directamente con el backend mediante peticiones **HTTP** usando **Axios**, interactuando con la API alojada en:  
+La aplicación se comunica con el backend mediante peticiones **HTTP** usando **Axios**, interactuando con la API alojada en:  
 👉 [https://gestarbackend-production.up.railway.app/](https://gestarbackend-production.up.railway.app/)
 
 ---
@@ -30,7 +32,7 @@ La aplicación se comunica directamente con el backend mediante peticiones **HTT
 
 - ⚛️ **React JS** – Biblioteca principal para la interfaz.  
 - ⚡ **Vite** – Entorno de desarrollo rápido y optimizado.  
-- 🎨 **Bootstrap** – Framework CSS para un diseño responsive.  
+- 🎨 **Bootstrap** – Framework CSS para diseño responsive.  
 - 🌐 **Axios** – Cliente HTTP para la comunicación con la API.  
 - 🧭 **React Router DOM** – Navegación entre vistas.  
 
@@ -57,31 +59,25 @@ GestarFrontEnd/
 
 ---
 
-## 🔐 Usuario de prueba
+## 🔐 Usuarios de prueba
 
-Puedes iniciar sesión con el siguiente usuario de prueba:
+Puedes iniciar sesión con los siguientes usuarios de prueba:
 
+**Supervisor**
 ```
-como supervisor:
-
 USUARIO: ignacio  
 CONTRASEÑA: 123456
-
-como agente:
-
-USUARIO: martin
-contraseña: Ignacio1920
-
-
 ```
 
-
+**Agente**
+```
+USUARIO: martin  
+CONTRASEÑA: Ignacio1920
+```
 
 ---
-## 🏷️ Tipificaciones disponibles
 
-Las **tipificaciones** son los códigos que identifican el motivo de la consulta de un cliente.  
-A continuación se listan las tipificaciones actualmente registradas en la base de datos:
+## 🏷️ Tipificaciones disponibles
 
 | Código | Descripción                              |
 |:-------:|-------------------------------------------|
@@ -91,6 +87,8 @@ A continuación se listan las tipificaciones actualmente registradas en la base 
 | 1223    | Solicitud de stop debit por fraude         |
 | 480     | Consulta por resumen                      |
 | 100     | Consulta general del producto             |
+
+---
 
 ## ⚙️ Instalación y ejecución
 
@@ -106,8 +104,7 @@ A continuación se listan las tipificaciones actualmente registradas en la base 
    ```
 
 3. **Configurar variables de entorno**
-
-   Crear un archivo `.env` en la raíz del proyecto con la siguiente variable:
+   Crear un archivo `.env` en la raíz del proyecto con:
    ```env
    VITE_API_URL=https://gestarbackend-production.up.railway.app
    ```
@@ -116,15 +113,13 @@ A continuación se listan las tipificaciones actualmente registradas en la base 
    ```bash
    npm run dev
    ```
-
-   La aplicación se abrirá en:  
-   👉 [http://localhost:5173](http://localhost:5173)
+   La aplicación se abrirá en 👉 [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## 🔗 Conexión con el Back End
+## 🔗 Conexión con el Backend
 
-Este front end consume la API desarrollada en el proyecto [**GDC Back End**](https://github.com/IgnacioRojos/GestarBackEnd.git), donde se encuentran definidas las rutas para:
+Este frontend consume la API desarrollada en el proyecto [**GDC Back End**](https://github.com/IgnacioRojos/GestarBackEnd.git), donde se encuentran las rutas para:
 
 - Autenticación de usuarios  
 - Gestión de reclamos, solicitudes y consultas  
@@ -135,23 +130,20 @@ Este front end consume la API desarrollada en el proyecto [**GDC Back End**](htt
 
 ## 📸 Capturas 
 
-Login:
-<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/42f37ff0-bf75-4abb-8211-a3dca7241144" />
+**Login**  
+![Login](https://github.com/user-attachments/assets/42f37ff0-bf75-4abb-8211-a3dca7241144)
 
-dasboard agente:
-<img width="1919" height="913" alt="image" src="https://github.com/user-attachments/assets/c59f3240-f6e0-4e09-b84b-29e78d5c501a" />
+**Dashboard Agente**  
+![Dashboard Agente](https://github.com/user-attachments/assets/c59f3240-f6e0-4e09-b84b-29e78d5c501a)
 
-buscador de gestiones:
-<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/a9d62e3b-01f1-4108-b7c6-6c8716122337" />
+**Buscador de gestiones**  
+![Buscador](https://github.com/user-attachments/assets/a9d62e3b-01f1-4108-b7c6-6c8716122337)
 
-crear cliente:
-<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/2fd052bc-4426-45d2-9a6f-5446afe7b565" />
+**Crear cliente**  
+![Crear cliente](https://github.com/user-attachments/assets/2fd052bc-4426-45d2-9a6f-5446afe7b565)
 
-
-
-dashboard supervisor:
-<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/40c2e0ba-fab4-47ba-9fd8-cd3f983e04fc" />
-
+**Dashboard Supervisor**  
+![Dashboard Supervisor](https://github.com/user-attachments/assets/40c2e0ba-fab4-47ba-9fd8-cd3f983e04fc)
 
 ---
 
@@ -160,3 +152,8 @@ dashboard supervisor:
 Desarrollado por **Ignacio Rojos**  
 📧 [nachorojos99@gmail.com](mailto:nachorojos99@gmail.com)  
 💼 [GitHub](https://github.com/IgnacioRojos)
+
+
+## 🧾 Licencia
+
+Distribuido bajo licencia MIT — libre para uso y modificación con fines educativos o comerciales, dando crédito al autor original.
